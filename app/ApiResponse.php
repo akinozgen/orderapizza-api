@@ -11,11 +11,11 @@ namespace App;
 class ApiResponse
 {
     /**
-     * @var string $status;
+     * @var string $status ;
      */
     public $status;
     /**
-     * @var ResultTypes $result;
+     * @var ResultTypes $result ;
      */
     public $result;
     /**
@@ -24,7 +24,8 @@ class ApiResponse
     public $data;
 }
 
-abstract class ResultTypes {
+abstract class ResultTypes
+{
     public const success = 'success';
     public const error = 'error';
     public const warning = 'warning';

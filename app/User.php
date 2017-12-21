@@ -8,7 +8,7 @@ class User extends Model
 {
     protected $table = 'users';
 
-    protected $fillable = ['username', 'email', 'password', 'remember_token'];
+    protected $fillable = ['username', 'email', 'password', 'remember_token', 'role'];
 
     protected $hidden = ['password', 'remember_token'];
 }

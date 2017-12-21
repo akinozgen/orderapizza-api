@@ -9,13 +9,12 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function auth(Request $request, $id)
+    public function auth ($id, $token)
     {
         $response = new ApiResponse();
-        $token = $request->get('token');
         $user = User::find($id);
 
-        if ($user->remember_token == md5($token)) {
+        if ($user && $user->remember_token == md5($token)) {
             $response->status = '200';
             $response->result = ResultTypes::success;
         } else {
@@ -26,7 +25,7 @@ class AuthController extends Controller
         echo json_encode($response);
     }
 
-    public function get_token(Request $request)
+    public function get_token (Request $request)
     {
         $response = new ApiResponse();
 
@@ -35,17 +34,14 @@ class AuthController extends Controller
 
         $user = User::where('email', $email)->where('password', md5($password))->first();
 
-        if ($user)
-        {
+        if ($user) {
             $pure_token = $password . time() . $password;
             $user->remember_token = md5($pure_token);
             $user->save();
 
             $response->result = ResultTypes::success;
             $response->data = ['token' => $user->remember_token, 'pure_token' => $pure_token];
-        }
-        else
-        {
+        } else {
             $response->status = '500';
             $response->result = ResultTypes::error;
             $response->data = ['message' => 'email/password'];
