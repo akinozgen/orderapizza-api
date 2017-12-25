@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrustProxies::class,
         ApiAuth::class,
         CreateLog::class,
+        // \App\Http\Middleware\Cors::class
     ];
 
     /**

@@ -40,7 +40,7 @@ class AuthController extends Controller
             $user->save();
 
             $response->result = ResultTypes::success;
-            $response->data = ['token' => $user->remember_token, 'pure_token' => $pure_token];
+            $response->data = ['token' => $user->remember_token, 'pure_token' => $pure_token, 'user' => $user->toArray()];
         } else {
             $response->status = '500';
             $response->result = ResultTypes::error;

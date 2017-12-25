@@ -105,7 +105,7 @@ Route::group(['prefix' => 'api/v1'], function () {
 
         Route::get('/get/{id}', 'UsersController@get');
 
-        Route::post('/insert', 'UsersController@insert');
+        Route::post('insert', 'UsersController@insert');
 
         Route::post('/update/{id}', 'UsersController@update');
 

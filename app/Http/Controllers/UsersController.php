@@ -62,7 +62,7 @@ class UsersController extends Controller
 
             $response->status = '200';
             $response->result = ResultTypes::success;
-            $response->data = ['id' => $user->id];
+            $response->data = ['id' => $user->id, 'user' => $user];
         } else {
             $response->status = '500';
             $response->result = ResultTypes::error;
