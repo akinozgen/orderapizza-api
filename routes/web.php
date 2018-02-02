@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'api/v1'], function () {
+Route::group(['prefix' => 'api/v1', 'middleware' => 'App\Http\Middleware\ApiAuth'], function () {
 
     Route::group(['prefix' => 'auth'], function () {
 
@@ -34,6 +34,8 @@ Route::group(['prefix' => 'api/v1'], function () {
         Route::post('/update/{id}', 'MenusController@update');
 
         Route::get('/delete/{id}', 'MenusController@delete');
+
+        Route::get('/slider', 'MenusController@slider');
 
     });
 
@@ -110,6 +112,12 @@ Route::group(['prefix' => 'api/v1'], function () {
         Route::post('/update/{id}', 'UsersController@update');
 
         Route::get('/delete/{id}', 'UsersController@delete');
+
+    });
+
+    Route::group(['prefix' => 'sliders'], function () {
+
+        Route::get('/', 'SlidersController@index');
 
     });
 

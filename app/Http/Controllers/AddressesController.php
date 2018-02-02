@@ -69,6 +69,7 @@ class AddressesController extends Controller
         $response = new ApiResponse();
         $data = [
             'user_id' => $request->get('user_id'),
+			'title' => $request->get('title'),
             'address_description' => $request->get('address_description'),
         ];
 

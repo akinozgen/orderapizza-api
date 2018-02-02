@@ -52,8 +52,10 @@ class UsersController extends Controller
 		$data = [
 			'username' => $request->get('username'),
 			'email' => $request->get('email'),
+			'phone' => $request->get('phone'),
 			'password' => md5($request->get('password')),
-			'role' => $request->get('role')
+			'role' => $request->get('role'),
+			'point' => 0
 		];
 
 		// Get if another user exists with same email address

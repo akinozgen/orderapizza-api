@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\{ ApiResponse, Menu, ResultTypes };
+use App\{
+    ApiResponse, Menu, ResultTypes
+};
 use Illuminate\Http\Request;
 
 class MenusController extends Controller
@@ -58,7 +60,7 @@ class MenusController extends Controller
             'image_path' => $request->get('image_path'),
             'available' => $request->get('available'),
         ];
-
+		
         if (!in_array(null, $data))
         {
             $menu = new Menu();
@@ -74,6 +76,7 @@ class MenusController extends Controller
         {
             $response->status = '500';
             $response->result = ResultTypes::error;
+			$response->data = $request->toArray();
         }
 
         echo json_encode($response);
@@ -120,4 +123,5 @@ class MenusController extends Controller
 
         echo json_encode($response);
     }
+
 }

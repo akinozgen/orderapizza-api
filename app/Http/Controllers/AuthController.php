@@ -7,7 +7,7 @@ use App\ResultTypes;
 use App\User;
 use Illuminate\Http\Request;
 
-class ApiAuthController extends Controller
+class AuthController extends Controller
 {
     public function auth ($id, $token)
     {

@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('address_id');
+			$table->text('menus');
             $table->dateTime('delivery');
             $table->float('price');
             $table->boolean('delivered');

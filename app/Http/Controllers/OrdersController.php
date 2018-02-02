@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\{
-    ApiResponse, Order, ResultTypes
+    ApiResponse, Order, ResultTypes, User
 };
 use Illuminate\Http\Request;
 
@@ -67,20 +67,28 @@ class OrdersController extends Controller
         $data = [
             'user_id' => $request->get('user_id'),
             'address_id' => $request->get('address_id'),
-            'delivery' => $request->get('delivery'),
+			'menus' => $request->get('menus'),
+            'delivery' => date('Y-m-d H:i:s', time() + 45 * 60),
             'price' => $request->get('price'),
-            'delivered' => $request->get('delivered')
+            'delivered' => "0",
+            'payment' => $request->get('payment')
         ];
+
+        $point = ($data['price'] / 100) * 2;
 
         if (!in_array(null, $data)) {
             $order = new Order();
+
+            $user = User::find($data['user_id']);
+            $user->point = $user->point + $point;
+            $user->save();
 
             foreach ($data as $key => $value) $order->$key = $value;
             $order->save();
 
             $response->status = '200';
             $response->result = ResultTypes::success;
-            $response->data = ['id' => $order->id];
+            $response->data = ['id' => $order->id, 'point' => $user->point];
         } else {
             $response->status = '500';
             $response->result = ResultTypes::error;
